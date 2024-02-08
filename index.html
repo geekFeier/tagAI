@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>TagAI</title>
+    <link rel="icon" href="./img/icon.ico" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/tag_data.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/magic_trans.js"></script>
+    <script src="./js/magic_book.js"></script>
+    <script src="./js/index.js"></script>
+
+    <style>
+      #myTab {
+        margin-top: 5px;
+      }
+
+      .tag_btn_group {
+        margin: 3px;
+      }
+
+      @keyframes show {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes hide {
+        0% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .toast_box {
+        /* width: 100%; */
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        /* justify-content: center; */
+        z-index: 10;
+        transform: translate(-50%, -50%);
+        display: none;
+      }
+
+      .toast_box p {
+        box-sizing: border-box;
+        padding: 10px 20px;
+        width: max-content;
+        /* 提示框的背景色 */
+        background: #707070;
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 6px;
+        opacity: 0.8;
+      }
+
+      .custom-tooltip {
+        --bs-tooltip-bg: var(--bs-primary);
+      }
+
+      .toliet {
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+
+  <body>
+
+    <div class="container container1">
+      <div class="container text-center container-left">
+        <div class="row">
+          <span class="title">正面</span>
+          <div class="input-group">
+            <textarea class="form-control" aria-label="With textarea" id="textarea_pos"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <span class="title">负面</span>
+          <div class="input-group">
+            <textarea class="form-control" aria-label="With textarea" id="textarea_neg"></textarea>
+          </div>
+        </div>
+          <img src="./img/logo.png" alt="" class="img">
+      </div>
+      <div class="container-right">
+        <div class="row align-items-start">
+          <div class="col" id="selected_btn_div">
+          </div>
+        </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        </ul>
+        <div class="tab-content" id="myTabContent">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

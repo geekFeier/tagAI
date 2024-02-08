@@ -1,0 +1,176 @@
+body {
+  font-size: 13px;
+}
+
+textarea,
+input {
+  outline: none;
+  transition: 0.2s;
+  font-size: 13px !important;
+}
+
+input {
+  height: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+textarea:active,
+input:active {
+  border: 1px solid #7367F0;
+  transition: 0.2s;
+}
+
+.form-control:focus {
+  border: 1px solid #7367F0;
+  box-shadow: none;
+}
+
+.container1 {
+  display: flex;
+  max-width: 100vw;
+}
+
+.container-left {
+  width: 380px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-right: 20px;
+  min-height: 100vh;
+}
+
+.container-right {
+  flex: 1;
+  padding: 30px 10px;
+}
+
+.title {
+  font-size: 14px;
+  text-align: left;
+  color: rgba(75, 70, 92, 0.68);
+  padding-bottom: 5px;
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+textarea.form-control {
+  min-height: 200px;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+  background: #d4dffa;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cfccf2;
+}
+
+#selected_btn_div .btn-warning:first-child {
+  background-color: red;
+  clear: left;
+  clear: both;
+  overflow: hidden;
+  margin-left: 100px;
+}
+
+button {
+  border-width: 0 !important;
+  margin: 3px 2px;
+
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: rgb(115, 103, 240);
+  height: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.btn-primary:hover{
+  background-color: #8e84f7 !important;
+
+}
+
+.btn-warning {
+  color: #fff !important;
+  background-color: rgb(255, 159, 67);
+}
+
+.btn-success {
+  color: #fff !important;
+  background-color: rgb(0, 207, 232);
+  height: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.btn-danger {
+  color: #fff !important;
+  background-color: rgb(0, 207, 232);
+  height: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.btn-success:hover {
+  background-color: #81e7f3 !important;
+}
+
+.btn-danger:hover {
+  background-color: #81e7f3 !important;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link {
+  font-size: 13px;
+  color: rgba(75, 70, 92, 0.68);
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #fff;
+  background-image: linear-gradient(72.47deg, rgb(115, 103, 240) 22.16%, rgba(115, 103, 240, 0.7) 76.47%)
+}
+
+.tab-pane.fade {
+  padding-top: 10px;
+}
+
+.container-right-bottom {}
+
+.btn-outline-primary {
+  font-size: 12px;
+  height: 32px;
+  margin-top: 3px;
+  background-color: transparent !important;
+  color: rgba(75, 70, 92, 0.68) !important;
+  border: 1px solid rgb(0, 207, 232) !important;
+}
+
+.bg-secondary {
+  background-color: #a69fec !important;
+  margin-left: 2px;
+}
+
+.input-group button {
+  position: relative;
+  top: -3px;
+}
+.img{
+  width: 60px;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
