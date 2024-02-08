@@ -174,3 +174,10 @@ button {
   bottom: 10px;
   left: 0;
 }
+#myTab {
+  margin-top: 5px;
+}
+
+.tag_btn_group {
+  margin: 3px;
+}
