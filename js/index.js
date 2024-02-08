@@ -14,10 +14,10 @@ var translate = window.magic_trans;
 
 //group prop
 var innerMust = [
-    "正面常用", "负面常用"
+    // "正面常用", "负面常用"
 ];
 var innerNeg = [
-    "负面常用", "负面实践"
+    // "负面常用", "负面实践"
 ];
 var diyMust = [];
 var diyNeg = [];
