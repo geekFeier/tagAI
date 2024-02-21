@@ -181,3 +181,26 @@ button {
 .tag_btn_group {
   margin: 3px;
 }
+.fileUl {
+  overflow: hidden;
+}
+.fileUl li{
+  float: left;
+  list-style: none;
+  padding:  8px 15px;  
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+#myTab li button{
+  padding: 5px  ;  
+  font-size: 12px;
+  margin-top: 5px;
+  margin-right: 7px;
+}
+#myTab {
+  margin-bottom: 5px;
+}
+#myTab .active{
+  background-image:linear-gradient(72.47deg, rgb(0 207 232) 22.16%, rgb(0 207 232 / 45%) 76%)
+}
+.container-right-bottom .row{display: none;}

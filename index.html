@@ -7,41 +7,172 @@
     <link rel="icon" href="./img/icon.ico" />
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/tag_data.js"></script>
-    
+    <script src="./js/vue.global.js"></script>
   </head>
-  <body>
-    <div class="container container1">
+
+  <body class="body">
+    <div id="app" class="container container1">
       <div class="container text-center container-left">
         <div class="row">
           <span class="title">正面</span>
           <div class="input-group">
-            <textarea class="form-control" aria-label="With textarea" id="textarea_pos"></textarea>
+            <textarea class="form-control" v-model="posVal"></textarea>
           </div>
         </div>
         <div class="row">
           <span class="title">负面</span>
           <div class="input-group">
-            <textarea class="form-control" aria-label="With textarea" id="textarea_neg"></textarea>
+            <textarea class="form-control" v-model="negVal"></textarea>
           </div>
         </div>
-          <img src="./img/logo.png" alt="" class="img">
+        <img src="./img/logo.png" alt="" class="img">
       </div>
       <div class="container-right">
-        <div class="row align-items-start">
-          <div class="col" id="selected_btn_div">
+
+        <div style="margin-bottom: 10px;">
+          <div class="col">
+            <button v-for="item in posValArr" :key="item.label" type="button" class="btn btn-primary btn-sm" @click="addVal(item.label)">{{item.label}}</button>
+          </div>
+          <div class="col">
+            <button v-for="item in negValArr" :key="item.label" type="button" class="btn btn-warning btn-sm" @click="addVal(item.label)">{{item.label}}</button>
           </div>
         </div>
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+        <ul class="fileUl nav nav-tabs">
+          <li class="nav-link" v-for="item in file" :key="item" @click="firstNavF(item)" :class="currentItem === item ? 'active' : ''">{{item}}</li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li v-for="item in Object.keys(globalData)" :key="item" class="nav-item">
+            <button class="nav-link" :class="currentItem2 === item ? 'active' : ''" @click="secondNavF(item)">{{item}}</button>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="show active">
+            <div class="container-right-bottom">
+              <div v-for="item in Object.keys(globalData[currentItem2] || {})" class="btn-group tag_btn_group">
+                <button type="button" class="btn btn-danger" @click="weightF(item,'minus')">-</button>
+                <input type="checkbox" class="btn-check">
+                <label class="btn btn-outline-primary" :for="'btn_'+item" @click="addVal(item,globalData[currentItem2][item])">
+                  {{item}}
+                  <span class="badge bg-secondary" v-if="currentItem2.includes('负面') || item.includes('负面')">
+                    {{negValArr.find(i => i.label.includes(item))?.weight || 0}}
+                  </span>
+                  <span class="badge bg-secondary" v-else>
+                    {{posValArr.find(i => i.label.includes(item))?.weight || 0}}
+                    <Fieldset>
+                    </Fieldset>
+                </label>
+                <button type="button" class="btn btn-success" @click="weightF(item,'add')">+</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </body>
+
 </html>
-<script src="./js/utils.js"></script>
-<script src="./js/magic_trans.js"></script>
-<script src="./js/magic_book.js"></script>
-<script src="./js/index.js"></script>
+
+
+<script>
+  const App = {
+    data() {
+      return {
+        file: ['人物', '人物发型', '动作', '动物装饰', '场景道具', '抽卡机', '新服饰', '服饰', '艺术魔法', '起手式', '面部表情', '颜色'],
+        url: '',
+        currentItem: '',
+        currentItem2: '',
+        globalData: {},
+        posVal: '',
+        negVal: '',
+        posValArr: [],
+        negValArr: [],
+      };
+    },
+    mounted() {
+      let url = ''
+      url = `${window.location.origin}/${window.location.pathname}`;
+      if (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1')) {
+        url = `${window.location.origin}/`
+      } else {
+        url = `${window.location.origin}/${window.location.pathname}`;
+      }
+      this.url = url
+      this.currentItem = this.file[0]
+      this.firstNavF()
+    },
+    methods: {
+      firstNavF(item) {
+        this.currentItem = item || this.currentItem
+        this.getData()
+      },
+      secondNavF(item) {
+        this.currentItem2 = item
+      },
+      getData() {
+        fetch(`${this.url}json/${this.currentItem}.json`)
+          .then(res => res.json())
+          .then(data => {
+            this.currentItem2 = Object.keys(data)[0]
+            this.globalData = data
+          })
+          .catch(error => console.error('加载JSON文件时出错:', error));
+      },
+      addVal(item, value) {
+        console.log(item)
+        if (this.currentItem2.includes('负面') || item.includes('负面')) {
+          if (this.negValArr.some(i => i.label.includes(item))) {
+            this.negValArr = this.negValArr.filter(i => !i.label.includes(item))
+          } else {
+            this.negValArr.push({
+              label: `${this.currentItem2}:${item}`,
+              weight: 0,
+              value
+            })
+          }
+        } else {
+          if (this.posValArr.some(i => i.label.includes(item))) {
+            this.posValArr = this.posValArr.filter(i => !i.label.includes(item))
+          } else {
+            this.posValArr.push({
+              label: `${this.currentItem2}：${item}`,
+              weight: 0,
+              value
+            })
+          }
+        }
+        this.setPosVal()
+        this.setNegVal()
+      },
+      setPosVal() {
+        this.posVal = this.posValArr.map(item => {
+          let w = Math.abs(item.weight)
+          let signStart = item.weight > 0 ? '{' : '['
+          let signEnd = item.weight > 0 ? '}' : ']'
+          return `${Array(w).fill(signStart).join('')}${item.value}${Array(w).fill(signEnd).join('')}`
+        }).join(',')
+      },
+      setNegVal() {
+        this.negVal = this.negValArr.map(item => {
+          let w = Math.abs(item.weight)
+          let signStart = item.weight > 0 ? '{' : '['
+          let signEnd = item.weight > 0 ? '}' : ']'
+          return `${Array(w).fill(signStart).join('')}${item.value}${Array(w).fill(signEnd).join('')}`
+        }).join(',')
+      },
+      weightF(item, sign) {
+        if (this.currentItem2.includes('负面') || item.includes('负面')) {
+          const value = this.negValArr.find(i => i.label.includes(item))
+          value.weight = sign === 'add' ? value.weight + 1 : value.weight - 1
+          this.setPosVal()
+        } else {
+          const value = this.posValArr.find(i => i.label.includes(item))
+          value.weight = sign === 'add' ? value.weight + 1 : value.weight - 1
+          this.setPosVal()
+        }
+      },
+    }
+  };
+  const app = Vue.createApp(App);
+  app.mount("#app");
+</script>
