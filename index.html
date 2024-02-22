@@ -49,18 +49,17 @@
         <div class="tab-content">
           <div class="show active">
             <div class="container-right-bottom">
-              <div v-for="item in Object.keys(globalData[currentItem2] || {})" class="btn-group tag_btn_group">
+              <div v-for="item in Object.keys(globalData[currentItem2] || {})" class="btn-group tag_btn_group" :class="negValArr.map(item=>item.value).concat(posValArr.map(item=>item.value)).includes(globalData[currentItem2][item]) ? 'active' : ''" >
                 <button type="button" class="btn btn-danger" @click="weightF(item,'minus')">-</button>
                 <input type="checkbox" class="btn-check">
-                <label class="btn btn-outline-primary" :for="'btn_'+item" @click="addVal(item,globalData[currentItem2][item])">
+                <label class="btn btn-outline-primary" @click="addVal(item,globalData[currentItem2][item])">
                   {{item}}
                   <span class="badge bg-secondary" v-if="currentItem2.includes('负面') || item.includes('负面')">
                     {{negValArr.find(i => i.label.includes(item))?.weight || 0}}
                   </span>
                   <span class="badge bg-secondary" v-else>
                     {{posValArr.find(i => i.label.includes(item))?.weight || 0}}
-                    <Fieldset>
-                    </Fieldset>
+                  </span>
                 </label>
                 <button type="button" class="btn btn-success" @click="weightF(item,'add')">+</button>
               </div>
@@ -119,7 +118,7 @@
           .catch(error => console.error('加载JSON文件时出错:', error));
       },
       addVal(item, value) {
-        console.log(item)
+        console.log(item,value)
         if (this.currentItem2.includes('负面') || item.includes('负面')) {
           if (this.negValArr.some(i => i.label.includes(item))) {
             this.negValArr = this.negValArr.filter(i => !i.label.includes(item))

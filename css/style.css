@@ -204,3 +204,6 @@ button {
   background-image:linear-gradient(72.47deg, rgb(0 207 232) 22.16%, rgb(0 207 232 / 45%) 76%)
 }
 .container-right-bottom .row{display: none;}
+.tag_btn_group.active{
+  background:bisque;
+}
