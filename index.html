@@ -31,12 +31,12 @@
 
         <div style="margin-bottom: 10px;">
           <div class="col">
-            <button v-for="item in posValArr" :key="item.label" type="button" class="btn btn-primary btn-sm" @click="addVal(item.label)">{{item.label}}{{item.weight !== 0 ? `(${item.weight})` : ''}}</button>
             <button type="button" class="btn btn-danger btn-sm ml-5" @click="posValArr = []" v-if="posValArr.length">重置正面</button>
+            <button v-for="item in posValArr" :key="item.label" type="button" class="btn btn-primary btn-sm" @click="addVal(item.label)">{{item.label}}{{item.weight !== 0 ? `(${item.weight})` : ''}}</button>
           </div>
           <div class="col">
-            <button v-for="item in negValArr" :key="item.label" type="button" class="btn btn-warning btn-sm" @click="addVal(item.label)">{{item.label}}{{item.weight !== 0 ? `(${item.weight})` : ''}}</button>
             <button type="button" class="btn btn-danger btn-sm ml-5" @click="negValArr = []" v-if="negValArr.length">重置反面</button>
+            <button v-for="item in negValArr" :key="item.label" type="button" class="btn btn-warning btn-sm" @click="addVal(item.label)">{{item.label}}{{item.weight !== 0 ? `(${item.weight})` : ''}}</button>
           </div>
         </div>
 
