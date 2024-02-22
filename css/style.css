@@ -118,7 +118,6 @@ button {
 
 .btn-danger {
   color: #fff !important;
-  background-color: rgb(0, 207, 232);
   height: 32px;
   padding-top: 0;
   padding-bottom: 0;
@@ -128,9 +127,7 @@ button {
   background-color: #81e7f3 !important;
 }
 
-.btn-danger:hover {
-  background-color: #81e7f3 !important;
-}
+ 
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link {
@@ -206,4 +203,7 @@ button {
 .container-right-bottom .row{display: none;}
 .tag_btn_group.active{
   background:bisque;
+}
+.ml-5{
+  margin-left: 5px;
 }
