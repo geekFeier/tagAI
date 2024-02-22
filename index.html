@@ -188,11 +188,11 @@
       weightF(item, sign) {
         if (this.currentItem2.includes('负面') || item.includes('负面')) {
           const value = this.negValArr.find(i => i.label.includes(item))
-          value.weight = sign === 'add' ? value.weight + 1 : value.weight - 1
-          this.setPosVal()
+          value.weight = sign === 'add' ? ++value.weight : --value.weight
+          this.setNegVal()
         } else {
           const value = this.posValArr.find(i => i.label.includes(item))
-          value.weight = sign === 'add' ? value.weight + 1 : value.weight - 1
+          value.weight = sign === 'add' ? ++value.weight : --value.weight
           this.setPosVal()
         }
       },
