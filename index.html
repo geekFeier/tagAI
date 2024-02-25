@@ -152,7 +152,7 @@
       },
       addVal(item, value) {
         if (this.currentItem2.includes('负面') || item.includes('负面')) {
-          if (!this.negValArr.map(i => i.label).includes(item)) {
+          if (!this.negValArr.map(i => i.label).includes(`${this.currentItem2}：${item}`)) {
             this.negValArr.push({
               label:`${this.currentItem2}：${item}`,
               value,
@@ -163,7 +163,7 @@
             this.delVal(item)
           }
         } else {
-          if (!this.posValArr.map(i => i.label).includes(item)) {
+          if (!this.posValArr.map(i => i.label).includes(`${this.currentItem2}：${item}`)) {
             this.posValArr.push({
               label:`${this.currentItem2}：${item}`,
               value,
